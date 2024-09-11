@@ -106,7 +106,6 @@ celerybeat.pid
 .venv
 env/
 virt_env/
-blogicum/static/
 ENV/
 env.bak/
 venv.bak/
@@ -148,6 +147,7 @@ dmypy.json
 
 # папки со статикой и медиа
 media/
+blogicum/static/
 
 # Testing
 build_tests/
