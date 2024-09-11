@@ -106,7 +106,7 @@ celerybeat.pid
 .venv
 env/
 virt_env/
-static/
+blogicum/static/
 ENV/
 env.bak/
 venv.bak/
