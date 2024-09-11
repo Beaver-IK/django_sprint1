@@ -70,7 +70,7 @@ def post_detail(request: HttpRequest, id: int) -> HttpResponse:
 def category_posts(request: HttpRequest, category_slug: str) -> HttpResponse:
     """Функция фильтрации постов по категории."""
     template = 'blog/category.html'
-    context: dict[str, Any]= {'category': category_slug,
-               'posts': posts
-               }
+    context: dict[str, Any] = {'category': category_slug,
+                               'posts': posts
+                               }
     return render(request, template, context)
