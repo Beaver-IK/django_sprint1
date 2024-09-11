@@ -17,9 +17,13 @@
     {% block title %} Описание страницы {% endblock %}
     </title>
   </head>
-  <body>	   
-    {% include "includes/header.html" %}
-    {% block content %} Контента нет {% endblock %}
-    {% include "includes/footer.html" %}
-  </body>
+  <main>
+    <div class="container py-5">
+      <body>	   
+        {% include "includes/header.html" %}
+        {% block content %} Контента нет {% endblock %}
+        {% include "includes/footer.html" %}
+      </body>
+    </div>
+  </main>
 </html>

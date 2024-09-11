@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from django.http import Http404, HttpRequest, HttpResponse
+from typing import Any
 
 
-posts = [
+posts: list[dict] = [
     {
         'id': 0,
         'location': 'Остров отчаянья',
@@ -45,24 +47,30 @@ posts = [
 ]
 
 
-def index(request: str):
+posts_list: dict[int, Any] = {post['id']: post for post in posts}
+
+
+def index(request: HttpRequest) -> HttpResponse:
     """Функция главной страницы."""
     template = 'blog/index.html'
     context = {'posts': reversed(posts)}
     return render(request, template, context)
 
 
-def post_detail(request: str, id: int):
+def post_detail(request: HttpRequest, id: int) -> HttpResponse:
     """Функция полного просмотра поста."""
-    template = 'blog/detail.html'
-    context = {'post': posts[id]}
+    try:
+        template: str = 'blog/detail.html'
+        context: dict[str, dict] = {'post': posts_list[id]}
+    except KeyError:
+        raise Http404('Пост не существует')
     return render(request, template, context)
 
 
-def category_posts(request: str, category_slug: str):
+def category_posts(request: HttpRequest, category_slug: str) -> HttpResponse:
     """Функция фильтрации постов по категории."""
     template = 'blog/category.html'
-    context = {'category': category_slug,
+    context: dict[str, Any]= {'category': category_slug,
                'posts': posts
                }
     return render(request, template, context)
